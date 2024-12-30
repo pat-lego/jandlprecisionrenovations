@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J & L Precision Renovations</title>
+<meta name="description" content="J & L Precision Renovations – Building Excellence from the Ground Up">
+<meta name="keywords" content="Sudbury, Contractors, Renovations, Construction, Home, Building, Carpentry, Framing, Drywall, Taping, Painting, Flooring, Decks, Fences, Patios, Siding, Windows, Doors, Roofing">
+<meta name="author" content="Patrique Legault">
+
+<meta property="og:image" content="assets/logo16x9.png" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1080" />
+<meta property="og:image:height" content="1080" />
+<meta property="og:image:alt" content="J & L Precision Renovations" />
+<meta property="og:type" content="website" />
+<meta property="og:URL" content="https://www.jandlprecisionrenovations.com" />
+
+<!-- Include CSS -->
+<link href="../css/tailwind.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    main {
+        flex: 1;
+    }
+</style>
+
+<!-- Include JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.7/dist/cdn.min.js"></script>
+    <meta property="og:title" content="Pat Legault's Website" />
+</head>
+
+<body>
+    <!-- Include header -->
+    <header x-data="{ open: false }">
+    <div class="hidden md:flex w-full justify-between items-center p-4 bg-black">
+        <h1 class="text-xl font-bold text-white">J & L Precision Renovations</h1>
+        <div class="flex-col">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a class="hover:text-blue-500 text-white" href="/">Home</a></li>
+                    <li><a class="hover:text-blue-500 text-white" href="/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Mobile View -->
+    <div class="flex md:hidden w-full justify-between items-center p-4 bg-black">
+        <h1 class="text-xl font-bold text-white">J & L Precision Renovations</h1>
+        <button @click="open = !open" class="text-white focus:outline-none">
+            <!-- Icon for mobile menu button -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="open" class="md:hidden flex flex-col items-end w-full bg-black p-4">
+        <nav>
+            <ul class="flex flex-col space-y-4">
+                <li><a class="hover:text-blue-500 text-white" href="/">Home</a></li>
+                <li><a class="hover:text-blue-500 text-white" href="/about.html">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Include the main content  -->
+    <main class="flex flex-col items-center justify-center w-full h-screen text-center">
+    <h1 class="font-bold mb-4 text-2xl">Pat Legault's Website</h1>
+    <img src="assets/engineer-debugging.jpg" alt="Software Engineering" class="object-cover mb-4">
+    <div class="mt-5 w-2/3">
+        <p class="italic">My name is Patrique and I am a software support engineer. I have a passion for coding and I am always
+        looking for new challenges. I am currently working at <a href="https://www.adobe.com/" target="_blank"
+            class="text-blue-500">Adobe</a> as a software support engineer.</p>
+    </div>
+</main>
+
+    <!-- Include footer -->
+    <footer class="bg-black text-white p-4">
+    <div class="flex justify-between items-center">
+        <p>&copy; J & L Precision Renovations</p>
+        <div class="flex items-start space-x-4">
+            <a class="mr-5" href="https://www.instagram.com/jandlprecisionrenovations" target="_blank">
+                <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a class="pr-5" href="https://www.facebook.com/JandLprecisionrenovations.ca" target="_blank">
+                <i class="fab fa-twitter fa-2x"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
