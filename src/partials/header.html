@@ -6,14 +6,16 @@
                 <ul class="flex space-x-4">
                     <li><a class="hover:text-logo-orange text-logo-grey" href="/">Home</a></li>
                     <li><a class="hover:text-logo-orange text-logo-grey" href="/about.html">About</a></li>
+                    <li><a class="hover:text-logo-orange text-logo-grey" href="/location.html">Location</a></li>
+                    <li><a class="hover:text-logo-orange text-logo-grey" href="/contactus.html">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </div>
     <!-- Mobile View -->
-    <div class="flex md:hidden w-full justify-between items-center p-4 bg-logo-black">
-        <h1 class="text-xl font-bold text-logo-organge">J & L Precision Renovations</h1>
-        <button @click="open = !open" class="text-logo-black focus:outline-none">
+    <div class="flex md:hidden w-full justify-between items-center p-4 bg-black">
+        <h1 class="text-xl text-logo-grey font-bold">J & L Precision Renovations</h1>
+        <button @click="open = !open" class="text-white focus:outline-none">
             <!-- Icon for mobile menu button -->
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -23,11 +25,13 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div x-show="open" class="md:hidden flex flex-col items-end w-full bg-logo-black p-4">
+    <div x-show="open" class="md:hidden flex flex-col items-end w-full bg-black p-4">
         <nav>
             <ul class="flex flex-col space-y-4">
-                <li><a class="hover:text-logo-orange text-logo-black" href="/">Home</a></li>
-                <li><a class="hover:text-logo-orange text-logo-black" href="/about.html">About</a></li>
+                <li><a class="hover:text-logo-orange text-logo-grey" href="/">Home</a></li>
+                <li><a class="hover:text-logo-orange text-logo-grey" href="/about.html">About</a></li>
+                <li><a class="hover:text-logo-orange text-logo-grey" href="/location.html">Location</a></li>
+                <li><a class="hover:text-logo-orange text-logo-grey" href="/contactus.html">Contact Us</a></li>
             </ul>
         </nav>
     </div>
