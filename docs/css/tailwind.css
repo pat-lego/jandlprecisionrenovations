@@ -667,10 +667,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
-.hover\:bg-logo-orange:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 90 20 / var(--tw-bg-opacity, 1));
-}
 .hover\:text-logo-orange:hover {
   --tw-text-opacity: 1;
   color: rgb(252 90 20 / var(--tw-text-opacity, 1));
