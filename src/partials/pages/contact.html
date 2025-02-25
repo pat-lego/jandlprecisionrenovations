@@ -1,6 +1,7 @@
 <!-- Script -->
 <script>
     document.addEventListener('alpine:init', () => {
+        const url = 'https://hooks.zapier.com/hooks/catch/21836138/2g1nwvp';
         Alpine.data('form', () => ({
             data: {
                 name: '',
@@ -14,25 +15,55 @@
                 error: false
             },
             submit(data) {
-                if (data.name && data.email && data.phone && data.reason) {
-                    this.data = {
-                        name: '',
-                        email: '',
-                        phone: '',
-                        reason: ''
-                    }
-                    this.model = {
-                        text: 'Successfully submitted',
-                        visible: true,
-                        error: false
-                    }
+                const validation = this.validateModelData(data);
+                if (typeof validation === "undefined") {
+                    fetch(url, {
+                        method: 'POST',
+                        body: JSON.stringify({ "data": data })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            this.data = {
+                                name: '',
+                                email: '',
+                                phone: '',
+                                reason: ''
+                            }
+                            this.model = {
+                                text: 'Successfully submitted',
+                                visible: true,
+                                error: false
+                            }; 
+                            this.resetModel();
+                        })
+                        .catch(error => {
+                            this.model = {
+                                text: 'An error occurred, please try again later',
+                                visible: true,
+                                error: true
+                            }
+                            this.resetModel();
+                            console.error('Error:', error)
+                        });
                 } else {
                     this.model = {
-                        text: 'Please fill out all fields',
+                        text: validation,
                         visible: true,
                         error: true
                     }
                     this.resetModel();
+                }
+            },
+            validateModelData(data) {
+                if (data && data.name && data.email && data.phone && data.reason) {
+                    if (!(data.email.includes('@') || data.email.includes('.'))) {
+                        return 'Email is invalid please make sure it has an @ and a .';
+                    }
+                    if (data.phone.length < 10) {
+                        return 'Phone number is invalid, please make sure it has at least 10 characters';
+                    }
+                } else {
+                    return 'Please fill in all the fields';
                 }
             },
             resetModel() {
@@ -78,7 +109,8 @@
                 <button x-on:click="submit(data)" class="bg-black text-white p-2">Submit</button>
             </div>
             <div :class="{'hidden': !model.visible, 'flex': model.visible}">
-                <p :class="{'text-red-500': model.error, 'text-blue-500': !model.error}" class="font-bold"  x-text="model.text"></p>
+                <p :class="{'text-red-500': model.error, 'text-blue-500': !model.error}" class="font-bold"
+                    x-text="model.text"></p>
             </div>
         </div>
     </div>
@@ -107,7 +139,8 @@
                 <button x-on:click="submit(data)" class="bg-black text-white p-2">Submit</button>
             </div>
             <div :class="{'hidden': !model.visible, 'flex': model.visible}">
-                <p :class="'text-red-500': !model.error, 'text-blue-500': model.error" class="text-bold" x-text="model.text"></p>
+                <p :class="'text-red-500': !model.error, 'text-blue-500': model.error" class="text-bold"
+                    x-text="model.text"></p>
             </div>
         </div>
         <div class="w-full">
