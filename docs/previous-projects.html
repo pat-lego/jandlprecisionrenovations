@@ -88,15 +88,19 @@
         const currentUrl = document.URL
         const urlParts = currentUrl.split('#');
         let id = null;
-        debugger;
+
+        // Make sure the urlParts has 2 entries
         if (urlParts.length == 2) {
             id = urlParts[1];
         }
+
+        // If the urlParts did not then force a specific value
         if (id == null) {
             id = '2020-01-01';
         }
-        debugger;
+
         document.getElementById(id).scrollIntoView();
+
         Alpine.data('project', () => ({
             open: false,
             userClicked: false,
@@ -207,12 +211,21 @@
                     <img class="w-full md:w-1/2 m-2" src="assets/washroom/before/image1.jpeg"
                         alt="Before the washroom renovation (right wall with sink)">
                 </div>
-
             </div>
             <div class="w-full h-full flex flex-col items-center justify-center mb-2" x-show="shouldOpen('2025-05-05')"
                 x-transition>
                 <span class="text-center">Once the renovation was completed.</span>
-                <div class="w-2/3 flex flex-row items-center justify-center">
+                <!-- Desktop view -->
+                <div class="hidden md:flex w-2/3 flex-row items-center justify-center">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image0.jpeg"
+                        alt="After the washroom renovation (vanity)">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image1.jpeg"
+                        alt="After the washroom renovation (shower)">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image2.jpeg"
+                        alt="After the washroom renovation (overview)">
+                </div>
+                <!-- Mobile view -->
+                <div class="md:hidden w-2/3 flex flex-col items-center justify-center">
                     <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image0.jpeg"
                         alt="After the washroom renovation (vanity)">
                     <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image1.jpeg"
