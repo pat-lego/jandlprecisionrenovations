@@ -83,67 +83,148 @@
 </header>
 
     <!-- Include previousprojects -->
-     <main>
+     <script>
+    document.addEventListener('alpine:init', () => {
+        const currentUrl = document.URL
+        const urlParts = currentUrl.split('#');
+        let id = null;
+        debugger;
+        if (urlParts.length == 2) {
+            id = urlParts[1];
+        }
+        if (id == null) {
+            id = '2020-01-01';
+        }
+        debugger;
+        document.getElementById(id).scrollIntoView();
+        Alpine.data('project', () => ({
+            open: false,
+            userClicked: false,
+            url: id,
+
+            shouldOpen(param) {
+                // If the param is the same as the provided id AND the user has not toggled
+                // the page then skip this, otherwise start igoring the query string param
+                if (param === id && !this.userClicked) {
+                    this.open = true;
+                }
+                return this.open;
+            },
+
+            wasClicked() {
+                if (!this.userClicked) {
+                    this.userClicked = true;
+                }
+                this.open = !this.open;
+            }
+        }));
+    });
+</script>
+<main>
     <div class="flex flex-col items-center justify-start">
         <!-- Framed Grarage-->
-        <div class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="{ open: true }" x-transition>
+        <div id="2020-01-01" class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="project" x-transition>
             <div class="w-full flex flex-row justify-left items-start">
                 <template x-if="open">
-                    <button class="hover:text-orange-500" @click="open = !open">&#9660;</button>
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9660;</button>
                 </template>
                 <template x-if="!open">
-                    <button class="hover:text-orange-500" @click="open = !open">&#9654;</button>
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9654;</button>
                 </template>
                 <div class="flex flex-col w-full mb-2">
-                    <span class="ml-4 italic">Framed Garage</span>
+                    <a href="previous-projects.html?#2020-01-01" class="ml-4 italic">Framed 3 Car Garage - 2020</a>
                 </div>
             </div>
-            <div class="w-full h-full flex justify-center mb-2" x-show="open" x-transition>
+            <div class="w-full h-full flex justify-center mb-2" x-show="shouldOpen('2020-01-01')" x-transition>
                 <div class="w-2/3 flex flex-col items-center justify-center">
-                    <img class="w-full md:w-1/2" src="assets/image0-1.jpeg" alt="Framed Garage">
-                    <span class="text-center">Framed in 2021, we worked with the owners to build a two car single door
-                        garage.</span>
+                    <img class="w-full md:w-1/2" src="assets/image0-3.jpeg" alt="Framed Garage">
+                    <span class="text-center">Framed a three car garage to host the customers sports
+                        cars.</span>
                 </div>
             </div>
         </div>
         <!-- Framed Grarage-->
-        <div class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="{ open: false }" x-transition>
+        <div id="2021-01-01" class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="project" x-transition>
             <div class="w-full flex flex-row justify-left items-start">
                 <template x-if="open">
-                    <button class="hover:text-orange-500" @click="open = !open">&#9660;</button>
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9660;</button>
                 </template>
                 <template x-if="!open">
-                    <button class="hover:text-orange-500" @click="open = !open">&#9654;</button>
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9654;</button>
                 </template>
                 <div class="flex flex-col w-full mb-2">
-                    <span class="ml-4 italic">Framed 3 Car Garage</span>
+                    <a href="previous-projects.html?#2021-01-01" class="ml-4 italic">Framed Garage - 2021</a>
                 </div>
             </div>
-            <div class="w-full h-full flex justify-center mb-2" x-show="open" x-transition>
+            <div class="w-full h-full flex justify-center mb-2" x-show="shouldOpen('2021-01-01')" x-transition>
                 <div class="w-2/3 flex flex-col items-center justify-center">
-                    <img class="w-full md:w-1/2" src="assets/image0-3.jpeg" alt="Framed Garage">
-                    <span class="text-center">Framed in 2020, framed a three car garage to host a customers sports cars.</span>
+                    <img class="w-full md:w-1/2" src="assets/image0-1.jpeg" alt="Framed Garage">
+                    <span class="text-center">Worked with the owners to build a two car single door garage that fit the
+                        owners needs.</span>
                 </div>
             </div>
         </div>
         <!-- Siding -->
-        <div class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="{ open: false }" x-transition>
+        <div id="2024-01-01" class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="project" x-transition>
             <div class="w-full flex flex-row justify-left items-start">
                 <template x-if="open">
-                    <button class="hover:text-orange-500" @click="open = !open">&#9660;</button>
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9660;</button>
                 </template>
                 <template x-if="!open">
-                    <button class="hover:text-orange-500" @click="open = !open">&#9654;</button>
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9654;</button>
                 </template>
                 <div class="flex flex-col w-full mb-2">
-                    <span class="ml-4 italic">Black Siding Installation</span>
+                    <a href="previous-projects.html?#2024-01-01" class="ml-4 italic">Black Siding Installation -
+                        2024</a>
                 </div>
             </div>
-            <div class="w-full h-full flex justify-center mb-2" x-show="open" x-transition>
+            <div class="w-full h-full flex justify-center mb-2" x-show="shouldOpen('2024-01-01')" x-transition>
                 <div class="w-2/3 flex flex-col items-center justify-center">
                     <img class="w-full md:w-1/2" src="assets/image1-6.jpeg" alt="Framed Garage">
                     <span class="text-center">Installed a black vinyl siding on the south side of the house.</span>
                 </div>
+            </div>
+        </div>
+        <!-- Washroom renovation -->
+        <div id="2025-05-05" class="flex flex-col w-2/3 m-2 border-b-2 border-black" x-data="project" x-transition>
+            <div class="w-full flex flex-row justify-left items-start">
+                <template x-if="open">
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9660;</button>
+                </template>
+                <template x-if="!open">
+                    <button class="hover:text-orange-500" @click="wasClicked()">&#9654;</button>
+                </template>
+                <div class="flex flex-col w-full mb-2">
+                    <a href="previous-projects.html?#2025-05-05" class="ml-4 italic">Washroom Renovation - 2025</a>
+                </div>
+            </div>
+            <div class="w-full h-full flex flex-col items-center justify-center mb-2" x-show="shouldOpen('2025-05-05')"
+                x-transition>
+                <span class="text-center">Previous images of the washroom.</span>
+                <div class="w-2/3 flex flex-row items-center justify-center">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/before/image0.jpeg"
+                        alt="Before the washroom renovation (left wall)">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/before/image1.jpeg"
+                        alt="Before the washroom renovation (right wall with sink)">
+                </div>
+
+            </div>
+            <div class="w-full h-full flex flex-col items-center justify-center mb-2" x-show="shouldOpen('2025-05-05')"
+                x-transition>
+                <span class="text-center">Once the renovation was completed.</span>
+                <div class="w-2/3 flex flex-row items-center justify-center">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image0.jpeg"
+                        alt="After the washroom renovation (vanity)">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image1.jpeg"
+                        alt="After the washroom renovation (shower)">
+                    <img class="w-full md:w-1/2 m-2" src="assets/washroom/after/image2.jpeg"
+                        alt="After the washroom renovation (overview)">
+                </div>
+                <span class="text-center">This newly renovated bathroom blends modern elegance with functional design.
+                    Featuring warm wood cabinetry, sleek black hardware, and stunning quartz countertops with a marble
+                    finish, the space offers both style and utility. Dual mirrors and a contemporary LED vanity light
+                    enhance brightness, while the built-in makeup vanity adds a personalized touch. Clean lines, neutral
+                    tones, and high-end finishes complete this refined transformation.</span>
             </div>
         </div>
     </div>
