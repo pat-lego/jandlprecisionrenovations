@@ -87,6 +87,7 @@
 <script>
     document.addEventListener('alpine:init', () => {
         const url = 'https://hooks.zapier.com/hooks/catch/21836138/2g1nwvp';
+        // eslint-disable-next-line no-undef
         Alpine.data('form', () => ({
             data: {
                 name: '',
@@ -107,7 +108,7 @@
                         body: JSON.stringify({ "data": data })
                     })
                         .then(response => response.json())
-                        .then(data => {
+                        .then(() => {
                             this.data = {
                                 name: '',
                                 email: '',

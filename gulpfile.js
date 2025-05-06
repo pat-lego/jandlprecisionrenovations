@@ -4,6 +4,7 @@ import fileInclude from 'gulp-file-include';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
 import browserSync from 'browser-sync';
+import eslint from 'gulp-eslint';
 
 const browser = browserSync.create();
 
@@ -29,7 +30,7 @@ const paths = {
 
 // Task to clean the docs folder
 export const dlte = (done) => {
-  deleteSync('docs/**', {force: true}); // Deletes everything in docs except the folder itself
+  deleteSync('docs/**', { force: true }); // Deletes everything in docs except the folder itself
   done();
 };
 
@@ -60,9 +61,16 @@ export const css = () => {
 
 // Task to copy assets
 export const assets = () => {
-  return gulp.src(paths.assets.src, {encoding: false})
+  return gulp.src(paths.assets.src, { encoding: false })
     .pipe(gulp.dest(paths.assets.dest));
 };
+
+export const checkForDebugger = () => {
+  return gulp.src(paths.html.src) // adjust path as needed
+    .pipe(eslint())
+    .pipe(eslint.format()) // prints the lint results to the console
+    .pipe(eslint.failAfterError()); // fails if an error is found (e.g., debugger)
+}
 
 // Task to serve files with live reload
 export const watch = () => {
@@ -86,7 +94,9 @@ export const build = gulp.series(dlte, gulp.parallel(css, htmlPages, assets));
 export const deploy = gulp.series(build, () => {
   return gulp.src(paths.cname.src)
     .pipe(gulp.dest(paths.cname.dest));
-});
+  }, 
+  () => checkForDebugger()
+);
 
 // can be executed by yarn gulp clean
 export const clean = gulp.series(dlte);
